@@ -1,0 +1,49 @@
+#to priv mode
+enable
+
+#to global mode
+configure terminal
+
+#disable dns lookup
+no ip domain lookup
+
+#set password
+line console 0
+password Admin15p@55
+exit
+
+#encrypt plain
+service password-encryption
+
+#set motd
+banner motd #Unauthorized access to Baerbel is prohibited#
+
+#set hostname
+hostname R1
+
+#Encrypt Passwords
+enable secret Enablep@55
+
+#Require 10 digit pswds
+security passwords min-length 10
+
+#assign domain name
+ip domain-name CCNA-lab.com
+
+username admin privilege 15 secret Admin15p@55
+
+line vty 0 4
+transport input ssh
+login local
+exit
+
+#generate rsa key
+crypto key generate rsa modulus 2048
+
+line console 0
+exec-timeout 5 0
+line vty 0 4
+exec-timeout 5 0
+exit
+
+login block-for 15 attempts 3 within 120
