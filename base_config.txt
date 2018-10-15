@@ -12,7 +12,7 @@ line console
 line console 0
 
 !assign console password
-password class
+password cisco
 
 !enable login
 login
@@ -28,7 +28,7 @@ banner motd # Unauthorized access is prohibited #
 hostname R1
 
 !exec password
-enable secret cisco
+enable secret class
 
 !assign domain name
 ip domain-name CCNA-lab.com
